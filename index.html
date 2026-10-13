@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hacha medieval de doble filo · Modelo 3D interactivo</title>
+  <meta name="description" content="Hacha medieval low-poly con materiales PBR (madera, acero y oro) mostrada con model-viewer. Cambia el acabado, el color del acero y la madera en tiempo real.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilos.css">
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+</head>
+<body>
+  <main class="pagina">
+    <section class="escenario" aria-label="Visor 3D">
+      <model-viewer id="visor"
+        src="hacha.glb"
+        alt="Hacha medieval de doble filo con mango de madera, cabeza de acero y detalles de oro"
+        camera-controls
+        touch-action="pan-y"
+        auto-rotate
+        rotation-per-second="16deg"
+        auto-rotate-delay="1500"
+        interaction-prompt="none"
+        environment-image="neutral"
+        shadow-intensity="0.9"
+        shadow-softness="1"
+        exposure="1.05"
+        camera-orbit="35deg 78deg 2.3m"
+        camera-target="0m 0.5m 0m"
+        field-of-view="30deg"
+        min-camera-orbit="auto 10deg 0.35m"
+        max-camera-orbit="auto 170deg 4m"
+        min-field-of-view="12deg"
+        interpolation-decay="120">
+      </model-viewer>
+
+      <div class="vistas" role="group" aria-label="Encuadre de la cámara">
+        <button type="button" data-vista="completa" aria-pressed="true">Completa</button>
+        <button type="button" data-vista="cabeza" aria-pressed="false">Cabeza</button>
+        <button type="button" data-vista="pomo" aria-pressed="false">Pomo</button>
+      </div>
+      <p class="ayuda">Arrastra para girar · rueda o pellizco para acercar</p>
+    </section>
+
+    <aside class="panel">
+      <header>
+        <p class="sobretitulo">Modelo 3D interactivo</p>
+        <h1>Hacha medieval <br>de doble filo</h1>
+        <p class="entrada">Modelo low-poly para tiempo real con tres materiales PBR —madera, acero y oro— horneados en un único atlas de 1K.</p>
+      </header>
+
+      <fieldset class="control" id="ctl-acabado" disabled>
+        <legend>Acabado <span class="estado" id="estado-acabado" aria-live="polite"></span></legend>
+        <div class="segmentos">
+          <button type="button" data-juego="limpio" aria-pressed="true">Limpio</button>
+          <button type="button" data-juego="desgastado" aria-pressed="false">Desgastado</button>
+        </div>
+        <p class="nota">Cambia el juego completo de texturas: color base, rugosidad, metalicidad y normales.</p>
+      </fieldset>
+
+      <fieldset class="control" id="ctl-acero" disabled>
+        <legend>Color del acero</legend>
+        <div class="muestras">
+          <button type="button" data-color="#ffffff" aria-pressed="true"><i style="--c:#9da1a8"></i>Natural</button>
+          <button type="button" data-color="#4b4f5c" aria-pressed="false"><i style="--c:#3a3d47"></i>Pavonado</button>
+          <button type="button" data-color="#8494c2" aria-pressed="false"><i style="--c:#56628a"></i>Azul temple</button>
+          <button type="button" data-color="#e0a468" aria-pressed="false"><i style="--c:#b98452"></i>Bronce</button>
+        </div>
+      </fieldset>
+
+      <fieldset class="control" id="ctl-madera" disabled>
+        <legend>Madera del mango</legend>
+        <div class="muestras">
+          <button type="button" data-color="#ffffff" aria-pressed="true"><i style="--c:#a85a26"></i>Cerezo</button>
+          <button type="button" data-color="#9a7a5e" aria-pressed="false"><i style="--c:#6b4426"></i>Nogal</button>
+          <button type="button" data-color="#4a403c" aria-pressed="false"><i style="--c:#2c211c"></i>Ébano</button>
+          <button type="button" data-color="#f4e3c4" aria-pressed="false"><i style="--c:#c98f52"></i>Fresno</button>
+        </div>
+      </fieldset>
+
+      <div class="acciones">
+        <button type="button" id="btn-giro" aria-pressed="true">Giro automático</button>
+        <button type="button" id="btn-reset">Restablecer</button>
+      </div>
+
+      <dl class="ficha">
+        <div><dt>Triángulos</dt><dd>2 708</dd></div>
+        <div><dt>Materiales</dt><dd>3</dd></div>
+        <div><dt>Texturas</dt><dd>1024 px</dd></div>
+        <div><dt>Archivo</dt><dd>GLB · 0,5 MB</dd></div>
+      </dl>
+
+      <footer>Modelado, UVs y horneado PBR en Blender · Visor <a href="https://modelviewer.dev/" target="_blank" rel="noopener">&lt;model-viewer&gt;</a></footer>
+    </aside>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
